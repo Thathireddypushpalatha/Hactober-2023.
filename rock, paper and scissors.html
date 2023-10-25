@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        
+        .game {
+            display: flex;
+        }
+        
+        .choice {
+            padding: 20px;
+            margin: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="game">
+            <div class="choice" id="rock">Rock</div>
+            <div class="choice" id="paper">Paper</div>
+            <div class="choice" id="scissors">Scissors</div>
+        </div>
+    </div>
+    <script>
+        const choices = ["rock", "paper", "scissors"];
+        
+        document.querySelectorAll(".choice").forEach(choice => {
+            choice.addEventListener("click", () => {
+                const playerChoice = choice.id;
+                const computerChoice = choices[Math.floor(Math.random() * 3)];
+                
+                const result = getWinner(playerChoice, computerChoice);
+                
+                alert(`You chose ${playerChoice}. Computer chose ${computerChoice}. You ${result}.`);
+            });
+        });
+        
+        function getWinner(player, computer) {
+            if (player === computer) {
+                return "tie!";
+            } else if ((player === "rock" && computer === "scissors") ||
+                       (player === "paper" && computer === "rock") ||
+                       (player === "scissors" && computer === "paper")) {
+                return "win";
+            } else {
+                return "lose";
+            }
+        }
+    </script>
+</body>
+</html>
